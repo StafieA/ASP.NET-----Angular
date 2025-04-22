@@ -1,4 +1,18 @@
 <h1>{{ title }}</h1>
-<ul *ngFor="let user of users">
-  <li>{{ user.username }}</li>
+
+<!-- First approach of looping -->
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.userName }}
+  </li>
+</ul>
+
+<!-- Second approach of looping -->
+
+<ul>
+  @for (user of users; track $index) {
+  <li>
+    {{ user.userName }}
+  </li>
+  }
 </ul>
