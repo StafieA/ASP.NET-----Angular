@@ -11,13 +11,26 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   private accountService = inject(AccountService);
+  loggedIn = false;
   model: any = {};
 
   ngOnInit(): void {
-    this.accountService.login(this.model);
+    // this.accountService.login(this.model).subscribe({
+    //   next: (response) => {
+    //     console.log(response);
+    //     this.loggedIn = true;
+    //   },
+    //   error: (error) => console.log(error),
+    // });
   }
 
   login() {
-    console.log(this.model);
+    this.accountService.login(this.model).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.loggedIn = true;
+      },
+      error: (error) => console.log(error),
+    });
   }
 }
