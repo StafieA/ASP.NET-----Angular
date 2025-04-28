@@ -12,8 +12,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   styleUrl: './nav.component.css',
 })
 export class NavComponent implements OnInit {
-  private accountService = inject(AccountService);
-  loggedIn = false;
+  accountService = inject(AccountService);
+
   model: any = {};
 
   ngOnInit(): void {
@@ -30,13 +30,12 @@ export class NavComponent implements OnInit {
     this.accountService.login(this.model).subscribe({
       next: (response) => {
         console.log(response);
-        this.loggedIn = true;
       },
       error: (error) => console.log(error),
     });
   }
 
   logout() {
-    this.loggedIn = false;
+    this.accountService.logout();
   }
 }
